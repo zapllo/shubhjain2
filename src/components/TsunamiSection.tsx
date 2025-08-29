@@ -64,12 +64,12 @@ export default function TsunamiSection() {
             <div className="mx-auto max-w-[1200px] px-4">
                 {/* Main Headline */}
                 <div className="text-center mt-12 mb-8 sm:mb-12">
-                    <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-bold text-[#13316b] leading-[1.2] mb-6">
+                    <h2 className="text-[24px] md:text-[32px] lg:text-[36px] font-bold text-[#13316b] leading-[1.2] mb-6">
                         Get A Tsunami of
                         <span className="md:inline-block  px-2 py-1 rounded">
                             <span className="">Sales</span>
                         </span>
-                        Than What You <br className='hidden md:block' /> Could <br className='md:hidden' /> Possibly Handle!{' '}
+                        Than What You Could  Possibly Handle!{' '}<br />
                         <span className="underline">(ON AUTOPILOT)</span>
                     </h2>
 
@@ -100,7 +100,7 @@ export default function TsunamiSection() {
                             />
                         </div>
                         {/* Story Text */}
-                        <div className="text-[16px] sm:text-[18px] leading-relaxed text-[#5b6b89] space-y-4">
+                        <div className="text-[16px] hidden md:block sm:text-[18px] leading-relaxed text-[#5b6b89] space-y-4">
                             <p>
                                 Before I created the Reverse Funnels System, I was tired of doing low attendance webinars & hour-long one-on-one sales calls.
                             </p>
@@ -165,7 +165,7 @@ export default function TsunamiSection() {
                                 className="inline-flex rounded-2xl -center justify-center "
                             />
 
-                       
+
                         </div>
 
 
@@ -194,7 +194,7 @@ export default function TsunamiSection() {
 
                         <div className="mt-3 flex items-center justify-center gap-2 text-[13px] font-bold text-[#454545]">
                             <Calendar className="h-3 sm:h-4 w-3 sm:w-4" />
-                              <span>Seats Of This Event As Of {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }).replace(/(\d+)/, '$1th')} Is Low</span>
+                            <span>Seats Of This Event As Of {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }).replace(/(\d+)/, '$1th')} Is Low</span>
                         </div>
                     </div>
                 </div>

@@ -101,7 +101,7 @@ export default function ReadyToBuySection() {
             <div className="mx-auto max-w-[1200px] px-4">
                 {/* Main Headlines */}
                 <div className="text-center">
-                    <h2 className="text-[28px]  md:text-[32px] lg:text-[36px] font-extrabold leading-[1.5] text-[#13316b] mb-4">
+                    <h2 className="text-[24px]  md:text-[32px] lg:text-[36px] font-extrabold leading-[1.5] text-[#13316b] mb-4">
                         In Just 3 Days… You Can Start Getting{' '}
                         <span className="inline- bg-[#FFF9C4] text-[#13316b] px-2 py-1 rounded">
                             <span className="underline">Ready To Buy</span> <span className='md:inline-block'>Leads<br className='md:hidden' /> & High Ticket Sales!!</span>

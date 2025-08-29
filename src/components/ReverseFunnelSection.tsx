@@ -41,7 +41,6 @@ function VideoThumbnail({ testimonial, onClick }: { testimonial: Testimonial, on
                     height={400}
                     className="w-full h-auto aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-
                 {/* Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center bg-transparent /20 group-hover:bg-black/30 transition-all duration-300">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -344,6 +343,19 @@ export default function ReverseFunnelSection() {
                             <AnimatedArrow className='scale-125  ml-36 mt-6 absolute' />
                         </div>
                     </div>
+                    <div className='flex md:hidden -mt-8 justify-center'>
+                        <div className='grid grid-cols-3'>
+                            <div>
+                                <img src='/arrow.gif' className='h-12' />
+                            </div>
+                            <div>
+                                <img src='/arrow.gif' className='h-12' />
+                            </div>
+                            <div>
+                                <img src='/arrow.gif' className='h-12' />
+                            </div>
+                        </div>
+                    </div>
                     {/* Testimonial Videos */}
                     <div className="grid grid-cols-1 md:mt-44 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
                         {testimonials.map((testimonial) => (
@@ -372,7 +384,7 @@ export default function ReverseFunnelSection() {
                                     className="inline-flex rounded-2xl -center justify-center "
                                 />
 
-                              
+
                             </div>
 
 
@@ -402,7 +414,7 @@ export default function ReverseFunnelSection() {
 
                             <div className="mt-3 flex items-center justify-center gap-2 text-[13px] font-bold text-[#454545]">
                                 <Calendar className="h-3 sm:h-4 w-3 sm:w-4" />
-                                 <span>Seats Of This Event As Of {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }).replace(/(\d+)/, '$1th')} Is Low</span>
+                                <span>Seats Of This Event As Of {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }).replace(/(\d+)/, '$1th')} Is Low</span>
                             </div>
                         </div>
                     </div>

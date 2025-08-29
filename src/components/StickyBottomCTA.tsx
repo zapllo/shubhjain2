@@ -13,8 +13,7 @@ interface ContentData {
 }
 
 export default function StickyBottomCTA() {
-    const [currentDate, setCurrentDate] = useState('')
-    const [seatsLeft, setSeatsLeft] = useState(10)
+     const [currentDate, setCurrentDate] = useState('')
     const [content, setContent] = useState<ContentData>({
         price: '₹99',
         originalPrice: '₹999',
@@ -23,7 +22,16 @@ export default function StickyBottomCTA() {
     })
 
     useEffect(() => {
-        // Fetch dynamic content
+        // Always set current date (today's date)
+        const now = new Date()
+        const options: Intl.DateTimeFormatOptions = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }
+        setCurrentDate(now.toLocaleDateString('en-US', options))
+
+        // Fetch dynamic content for pricing only
         const fetchContent = async () => {
             try {
                 const response = await fetch('/api/content')
@@ -35,49 +43,15 @@ export default function StickyBottomCTA() {
                         enrollLink: data.enrollLink || 'https://pages.razorpay.com/hts-fbspecial',
                         eventDeadline: data.eventDeadline || ''
                     })
-                    
-                    // Set deadline date from API or fallback to current date
-                    if (data.eventDeadline) {
-                        const deadlineDate = new Date(data.eventDeadline)
-                        const options: Intl.DateTimeFormatOptions = {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        }
-                        setCurrentDate(deadlineDate.toLocaleDateString('en-US', options))
-                    } else {
-                        // Fallback to current date if no deadline is set
-                        const now = new Date()
-                        const options: Intl.DateTimeFormatOptions = {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        }
-                        setCurrentDate(now.toLocaleDateString('en-US', options))
-                    }
                 }
             } catch (error) {
                 console.error('Error fetching content:', error)
-                // Fallback to current date on error
-                const now = new Date()
-                const options: Intl.DateTimeFormatOptions = {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                }
-                setCurrentDate(now.toLocaleDateString('en-US', options))
             }
         }
 
         fetchContent()
-
-        // Optional: Add countdown animation for seats
-        const interval = setInterval(() => {
-            setSeatsLeft(prev => prev > 1 ? prev - 1 : 10) // Reset to 10 when it reaches 1
-        }, 30000) // Change every 30 seconds
-
-        return () => clearInterval(interval)
     }, [])
+
 
     return (
         <div
@@ -130,10 +104,6 @@ export default function StickyBottomCTA() {
                                         className="inline-flex text-sm rounded-2xl -center justify-center "
                                     />
 
-                                    {/* Seats chip */}
-                                    <div className="absolute md:-top-4 -top-5 right- right-[4%] mt-2 min-w-[100px] sm:min-w-[118px] rounded-full bg-[#0B1A3A] px-2 sm:px-3.5 py-1 sm:py-1.5 text-center text-[10px] sm:text-[11px] font-semibold text-white shadow">
-                                        10 Seats Left
-                                    </div>
                                 </div>
 
 

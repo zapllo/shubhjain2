@@ -94,21 +94,21 @@ function DecorativeIcon3() {
 
 export default function FinalCTASection() {
     return (
-        <section className="w-full bg-white py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+        <section className="w-full bg-white py-2 relative overflow-hidden">
             {/* Decorative Icons */}
-            <div className="absolute top-8 left-8 hidden lg:block">
+            <div className="absolute top-8 md:left-8  ">
                 <DecorativeIcon1 />
             </div>
-            <div className="absolute top-16 right-8 hidden lg:block">
+            <div className="absolute top-16 right-8 ">
                 <DecorativeIcon2 />
             </div>
-            <div className="absolute bottom-8 right-16 hidden lg:block">
+            <div className="absolute bottom-8 right-16 ">
                 <DecorativeIcon3 />
             </div>
 
             <div className="mx-auto max-w-[1200px] px-4">
                 {/* Main Headline */}
-                <div className="text-center mb-8">
+                <div className="text-center mt-12 mb-8">
                     <h2 className={`text-[28px] md:text-[40px] font-bold text-center text-[#0B2C67] mb-8 ${shadowsIntoLight.className}`} style={{
                         fontWeight: '600',
                         lineHeight: '1.3em',
@@ -197,7 +197,7 @@ export default function FinalCTASection() {
 
                         <div className="mt-3 flex items-center justify-center gap-2 text-[13px] font-bold text-[#454545]">
                             <Calendar className="h-3 sm:h-4 w-3 sm:w-4" />
-                            <span>Hurry! 28 Seats Of This Event Left</span>
+                             <span>Seats Of This Event As Of {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }).replace(/(\d+)/, '$1th')} Is Low</span>
                         </div>
                     </div>
                 </div>

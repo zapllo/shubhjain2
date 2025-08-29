@@ -27,7 +27,7 @@ function SunIcon() {
 function CheckIcon() {
     return (
         <svg
-            className="w-[30px] h-[30px] flex-shrink-0"
+            className="w-[25px] h-[25px] flex-shrink-0"
             viewBox="0 0 30 30"
             fill="none"
         >
@@ -51,7 +51,7 @@ interface DayCardProps {
 
 function DayCard({ day, title, image, items, dayNum }: DayCardProps) {
     return (
-        <div className="bg-white rounded-xl shadow-lg overflow-">
+        <div className="bg-white rounded-xl py-4 h-full shadow-lg overflow-">
             {/* Image Section */}
             <div className="relative">
                 <Image
@@ -85,7 +85,7 @@ function DayCard({ day, title, image, items, dayNum }: DayCardProps) {
                         <li key={index} className="flex items-start gap-3">
                             <CheckIcon />
                             <span
-                                className="text-[14px] sm:text-[16px] leading-relaxed text-gray-700"
+                                className="md:text-[18px] text-[18px]  leading-relaxed text-gray-700"
                                 dangerouslySetInnerHTML={{ __html: item }}
                             />
                         </li>
@@ -187,9 +187,9 @@ function DecorativeIcon2() {
 
 export default function AgendaSection() {
     return (
-        <section className="w-full bg-white py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+        <section className="w-full bg-white py-2  relative overflow-hidden">
             {/* Decorative Icons */}
-            <div className="absolute top-8 md:left-8  lg:block">
+            <div className="absolute top-2 md:left-8  lg:block">
                 <DecorativeIcon1 />
             </div>
             <div className="absolute top-16 right-0 md:right-8 idden block">
@@ -199,11 +199,11 @@ export default function AgendaSection() {
             <div className="mx-auto max-w-[1200px] px-4">
                 {/* Main Headline */}
                 <div className="text-center mb-12 sm:mb-16">
-                    <h2 className="text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] font-bold text-[#13316b] leading-[1.2] mb-6">
+                    <h2 className="text-[26px] mt-8 sm:text-[28px] md:text-[32px] lg:text-[36px] font-bold text-[#13316b] leading-[1.2] mb-6">
                         Results Driven Agenda For{' '}
-                        <span className="inline-block bg-[#FFFECD] text-[#13316b] px-2 py-1 rounded">
+                        <span className="md:inline-block bg-[#FFFECD] text-[#13316b] px-2 py-1 rounded">
                             <span className="text-[#13316b] ">3-Day High-Ticket</span>
-                        </span>{' '}<br />
+                        </span>{' '}<br className='hidden md:block'/>
                         Sprint
                     </h2>
 
@@ -227,23 +227,17 @@ export default function AgendaSection() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="text-center mt-16 md:mt-24 space-y-6">
+                <div className="text-center mt-8 md:mt-8 space-y-6">
 
 
                     <div className="text-center mt-12">
                         <div className="relative inline-block">
                             <EnrollButton
-
                                 price="₹99"
                                 originalPrice="₹999"
                                 buttonText="ENROLL NOW"
                                 className="inline-flex rounded-2xl -center justify-center "
                             />
-
-                            {/* Seats chip */}
-                            <div className="absolute -top-4 sm:-top-6 right- right-[4%] min-w-[100px] sm:min-w-[118px] rounded-full bg-[#0B1A3A] px-2 sm:px-3.5 py-1 md:py-1.5 mt-2 text-center text-[10px] sm:text-[11px] font-semibold text-white shadow">
-                                10 Seats Left
-                            </div>
                         </div>
 
 
@@ -272,7 +266,7 @@ export default function AgendaSection() {
 
                         <div className="mt-3 flex items-center justify-center gap-2 text-[13px] font-bold text-[#454545]">
                             <Calendar className="h-3 sm:h-4 w-3 sm:w-4" />
-                            <span>Hurry! 28 Seats Of This Event Left</span>
+                             <span>Seats Of This Event As Of {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }).replace(/(\d+)/, '$1th')} Is Low</span>
                         </div>
                     </div>
                 </div>

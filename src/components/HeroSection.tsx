@@ -68,13 +68,13 @@ export default function HeroSection() {
         <div className='w-full flex overflow-hidden justify-center'>
             <section className="relative w-full bg-[url('/back.png')] bg-[length:32px_32px] bg-center">
                 {/* Background Overlay */}
-                <div className="absolute inset-0 bg-white/60 pointer-events-none" />
+                <div className="absolute inset-0 bg-white/70 pointer-events-none" />
                 {/* Content - Updated padding to match specifications */}
                 <div className="relative z-10 px-[10px] py-0 sm:px-5 md:px-10  lg:px-10 ">
                     {/* Top ribbon */}
                     <div className='w-full flex justify-center '>
                         <div className="bg-gradient-to-r from-[#3A51A6] to-[#092E4E] md:px-[74px] px-5 text-nowrap  md:py-[22px] py-[9px] rounded-t-none rounded-b-xl max-w-full">
-                            <h1 style={{ fontWeight: 600 }} className=" text-[#FCFEFF] text-[15.6px]  lg:text-xl text-center">
+                            <h1 style={{ fontWeight: 600 }} className=" text-[#FCFEFF] text-[17.6px]  lg:text-xl text-center">
                                 ⏰ Give Me 3 Days & I&apos;ll Show You How To...
                             </h1>
                         </div>
@@ -83,20 +83,20 @@ export default function HeroSection() {
 
                     {/* Headline + subhead */}
                     <div className="mx-auto md:mt-3 px-4 py-6 text-center">
-                        <h1 className="mx-auto max-w-[900px]  font-bold sm:leading-[1.25] text-[#0F2C80] text-[22px]  md:text-[42px] lg:text-[46px] leading-[1.35]">
+                        <h1 className="mx-auto max-w-[900px]  font-extrabold sm:leading-[1.25] text-[#0F2C80] text-[26px]  md:text-[42px] lg:text-[46px] leading-[1.35]">
                             Scale your Coaching Business To{' '}
-                            <span className="bg-[#FFF9C4]">5 Lakhs/Month PROFIT</span>{' '}
+                            <span className="bg-[#FFF9C4]">8 Lakhs/Month PROFIT</span>{' '}
                             Using Army Of{' '}
                             <span className="underline text-[#0F2C80]">A.I.</span>{' '}
                             <span className="underline text-[#0F265C]">Agents.</span>
                         </h1>
 
-                        <p className="mt-4 text-[18px] sm:text-[20px] md:text-[26px] font-medium italic text-[#454545] -600">
+                        <p className="mt-4 text-[23px]  md:text-[26px] font-medium italic text-[#454545] -600">
                             ... Zero Tech Method &amp; Complete Time Freedom.
                         </p>
 
                         {/* Small pills - responsive grid */}
-                        <div className="mx-auto p-4 mt-4 sm:mt-6">
+                        <div className="mx-auto p-4 md:mt-4 mt-1">
                             {/* Mobile layout: 2 on top, 1 centered below */}
                             <div className="flex flex-col items-center gap-6 sm:hidden">
                                 <div className="flex gap-2">
@@ -151,31 +151,31 @@ export default function HeroSection() {
                                         <img
                                             src="/live.svg"
                                             alt="live"
-                                            className="object-cover w-auto h-12 sm:h-16"
+                                            className="object-cover w-auto md:h-12 scale-150 "
                                         />
                                     </div>
 
                                     <div className="relative rounded-[14px]">
                                         <div className="pointer-events-none absolute inset-0 rounded-[14px] [background:linear-gradient(180deg,#EEF2FF_0%,#EAF0FF_100%)] [mask-image:linear-gradient(#000,rgba(0,0,0,.98))]"></div>
                                         <div
-                                            className="pointer-events-none absolute bottom-[-8px] right-[-8px] md:h-[80px] h-[120px] md:w-[80px] w-[120px] opacity-[.18]"
+                                            className="pointer-events-none absolute bottom-[-8px] right-[-8px] md:h-[80px] h-[120px] md:w-[80px]  w-[120px] opacity-[.18]"
                                             style={{
                                                 background:
                                                     "url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22><path d=%22M86 94 96 120 70 110 56 120 50 98 24 106 36 82 16 72 40 66 34 44 56 56 64 34 74 58 96 48 86 72 108 78 86 86Z%22 fill=%22%2394A3FF%22/></svg>') center/contain no-repeat",
                                             }}
                                         />
 
-                                        <h3 className="relative z-[1] mb-2 mt-[18px] text-center text-[24px] font-extrabold tracking-[-0.2px] text-[#2a2a2a]">
+                                        <h3 className="relative z-[1] mb-2 mt-[5px] text-center text-[24px] font-extrabold tracking-[-0.2px] text-[#2a2a2a]">
                                             Implementation Agenda:
                                         </h3>
                                         <span className="relative z-[1] block h-[8px] sm:h-[10px] w-[180px] sm:w-[210px] mx-auto -mt-1 mb-3 bg-[url('https://lp.launchatscale.com/wp-content/uploads/2024/05/line.svg')] bg-contain bg-center bg-no-repeat" />
 
-                                        <ul className="relative z-[1] text-[13px] sm:text-[15px] leading-[1.55] text-[#273352] space-y-4">
+                                        <ul className="relative mt-6 z-[1] text-[13px] sm:text-[15px] leading-[1.55] text-[#273352] space-y-4">
                                             <li className="flex gap-2 sm:gap-3 ">
                                                 <span className="mt-[2px] inline-block shrink-0">
                                                     <CheckIcon className="h-[24px] sm:h-[30px] w-[24px] sm:w-[30px]" />
                                                 </span>
-                                                <span className='text-lg md:text-base'
+                                                <span className='text-base md:text-base'
                                                     dangerouslySetInnerHTML={{
                                                         __html:
                                                             'How to Make <b>10 Lakhs or More in Sales In ONE Weekend</b> Which Would Otherwise Take You Months to HIT!',
@@ -190,7 +190,7 @@ export default function HeroSection() {
                                                 <span className="mt-[2px] inline-block shrink-0">
                                                     <CheckIcon className="h-[24px] sm:h-[30px] w-[24px] sm:w-[30px]" />
                                                 </span>
-                                                <span className='text-lg md:text-base'
+                                                <span className='text-base md:text-base'
                                                     dangerouslySetInnerHTML={{
                                                         __html:
                                                             'How to <b>SELL Premium Offers Without Sales Calls</b> &amp; Close Effortlessly in 5 hours/month.',
@@ -205,7 +205,7 @@ export default function HeroSection() {
                                                 <span className="mt-[2px] inline-block shrink-0">
                                                     <CheckIcon className="h-[24px] sm:h-[30px] w-[24px] sm:w-[30px]" />
                                                 </span>
-                                                <span className='text-lg md:text-base'
+                                                <span className='text-base md:text-base'
                                                     dangerouslySetInnerHTML={{
                                                         __html:
                                                             'How To Create A Buying Movement That Makes <b>People Throw Credit Cards</b> At You To Buy!',
@@ -217,19 +217,16 @@ export default function HeroSection() {
                                 </div>
 
                                 {/* CTA Section */}
-                                <div className="text-center mt-12">
+                                <div className="text-center mt-8">
                                     <div className="relative inline-block">
                                         <EnrollButton
                                             price="₹99"
                                             originalPrice="₹999"
                                             buttonText="ENROLL NOW"
-                                            className="inline-flex rounded-2xl items-center justify-center"
+                                            className="inline-flex rounded-2xl  items-center justify-center"
                                         />
 
-                                        {/* Seats chip */}
-                                        <div className="absolute -top-4 sm:-top-6 right- mt-2 right-[4%] min-w-[100px] sm:min-w-[118px] rounded-full bg-[#0B1A3A] px-2 sm:px-3.5 py-1 sm:py-1.5 text-center text-[10px] sm:text-[11px] font-semibold text-white shadow">
-                                            10 Seats Left
-                                        </div>
+
                                     </div>
 
 
@@ -256,7 +253,7 @@ export default function HeroSection() {
 
                                         <div className="mt-3 flex items-center justify-center gap-2 text-[13px] font-bold text-[#454545]">
                                             <CalIcon className="h-3 sm:h-4 w-3 sm:w-4" />
-                                            <span>Hurry! 28 Seats Of This Event Left</span>
+                                            <span>Seats Of This Event As Of {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }).replace(/(\d+)/, '$1th')} Is Low</span>
                                         </div>
                                     </div>
                                 </div>
@@ -382,17 +379,17 @@ type Item = {
 
 function InfoCard({ label, value, Icon }: Item) {
     return (
-        <div className="rounded-[14px] border border-[#E6E6E6] bg-white p-3 sm:p-4 shadow-[0_6px_12px_rgba(0,0,0,0.06)]">
+        <div className="rounded-[14px] border border-[#E6E6E6] bg-white p-3 sm:p-4 shadow-[0_6px_12px_rgba(0,0,0,0.06)] ">
             <div className="flex items-center gap-2 sm:gap-3">
                 <span className="inline-flex h-[32px] sm:h-[41px] w-[32px] sm:w-[41px] items-center justify-center rounded-full flex-shrink-0">
-                    <Icon className="w-6 h-6 sm:w-8 sm:h-8" />
+                    <Icon className="w-6 h-6 sm:w-10 sm:h-10" />
                 </span>
 
                 <div className="leading-tight min-w-0">
-                    <div className="text-[10px] sm:text-[12px] font-bold uppercase tracking-wide text-[#6B7CFF]">
+                    <div className="text-[14px] font-medium uppercase tracking-wide text-[#6B7CFF]">
                         {label}
                     </div>
-                    <div className="mt-[2px] text-[14px] sm:text-[18px] font-semibold text-[#0B1A3A] truncate">
+                    <div className="mt-[2px] md:text-[18px] sm:text-[24px] font-bold text-[#0B1A3A] truncate">
                         {value}
                     </div>
                 </div>

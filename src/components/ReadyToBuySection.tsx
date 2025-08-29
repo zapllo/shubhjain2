@@ -101,7 +101,7 @@ export default function ReadyToBuySection() {
             <div className="mx-auto max-w-[1200px] px-4">
                 {/* Main Headlines */}
                 <div className="text-center">
-                    <h2 className="text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] font-bold leading-[1.5] text-[#13316b] mb-4">
+                    <h2 className="text-[28px]  md:text-[32px] lg:text-[36px] font-extrabold leading-[1.5] text-[#13316b] mb-4">
                         In Just 3 Days… You Can Start Getting{' '}
                         <span className="inline- bg-[#FFF9C4] text-[#13316b] px-2 py-1 rounded">
                             <span className="underline">Ready To Buy</span> <span className='md:inline-block'>Leads<br className='md:hidden' /> & High Ticket Sales!!</span>
@@ -173,8 +173,8 @@ export default function ReadyToBuySection() {
 
                                 {/* Overlay Text */}
                                 <div className="absolute md:top-[60%] md:-ml-48  left-[0%] w-64 transform -rotate-6">
-                                    <AnimatedArrow className="absolute md:left-56 left-24 -top-20 transform rotate-[180deg] md:-rotate-[160deg] scale-200" />
-                                    <p className={`text-[12px] sm:text-[14px] md:text-[36px] font-bold text-green-600 px-2 py-1 rounded  -lg text-center ${shadowsIntoLight.className}`} style={{
+                                    <AnimatedArrow className="absolute md:left-56 left-24 -top-36 transform rotate-[180deg] md:-rotate-[160deg] scale-200" />
+                                    <p className={`text-[12px] -mt-20 sm:text-[14px] md:text-[36px] font-bold text-green-600 px-2 py-1 rounded  -lg text-center ${shadowsIntoLight.className}`} style={{
                                         fontSize: '20px',
                                         fontWeight: '600',
                                         lineHeight: '1.3em',
@@ -195,7 +195,7 @@ export default function ReadyToBuySection() {
                 </div>
                 {/* CTA Section */}
                 <div className='w-full flex justify-center md:-m md:-mt-36 -'>
-                    <div className="text-center mt-32 md:mt-0 space-y-4">
+                    <div className="text-center  mt-0 space-y-4">
 
                         {/* CTA Section */}
                         <div className="text-center mt-12">
@@ -208,10 +208,7 @@ export default function ReadyToBuySection() {
                                     className="inline-flex rounded-2xl -center justify-center "
                                 />
 
-                                {/* Seats chip */}
-                                <div className="absolute -top-4 sm:-top-6 right- right-[4%] mt-2 min-w-[100px] sm:min-w-[118px] rounded-full bg-[#0B1A3A] px-2 sm:px-3.5 py-1 sm:py-1.5 text-center text-[10px] sm:text-[11px] font-semibold text-white shadow">
-                                    10 Seats Left
-                                </div>
+                            
                             </div>
 
 
@@ -241,7 +238,7 @@ export default function ReadyToBuySection() {
 
                             <div className="mt-3 flex items-center justify-center gap-2 text-[13px] font-bold text-[#454545]">
                                 <Calendar className="h-3 sm:h-4 w-3 sm:w-4" />
-                                <span>Hurry! 28 Seats Of This Event Left</span>
+                                <span>Seats Of This Event As Of {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }).replace(/(\d+)/, '$1th')} Is Low</span>
                             </div>
                         </div>
                     </div>

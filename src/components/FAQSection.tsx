@@ -66,7 +66,7 @@ export default function FAQSection() {
     }
 
     return (
-        <div className="w-full bg-[#F5F6F8] relative overflow-hidden py-[40px] px-5 md:px-[20px] lg:px-[40px]">
+        <div className="w-full bg-[#F5F6F8] relative overflow-hidden py-[20px] px-5 md:px-[20px] lg:px-[40px]">
             <div className="max-w-[1140px] mx-auto">
                 {/* Header */}
                 <div className="text-center mb-8">

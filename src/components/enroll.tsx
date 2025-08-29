@@ -84,85 +84,54 @@ export default function EnrollButton({
     return () => clearInterval(interval)
   }, [])
 
-  return (
-    <div className={`w-full flex justify-center ${className}`}>
-      <div className="elementor-button-wrapper relative">
-        {showSeatsChip && (
-          <div className="absolute -top-4 sm:-top-6 right-[4%] mt-2 min-w-[100px] sm:min-w-[118px] rounded-full bg-[#0B1A3A] px-2 sm:px-3.5 py-1 sm:py-1.5 text-center text-[10px] sm:text-[11px] font-semibold text-white shadow z-10">
-            {seatsLeft} Seats Left
-          </div>
-        )}
-        
-        <b><b>
-          <a 
-            className="relative inline-block bg-[#E2181B] text-white font-bold py-4 px-12 md:py-4 md:px-12 rounded-[20px] text-sm md:text-base transition-all duration-300 overflow-hidden group"
-            href={content.enrollLink}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <span className="elementor-button-content-wrapper relative z-10">
-              <span className="elementor-button-text md:text-2xl text-xl items">
-                ENROLL NOW @ {content.price}{' '}
-                <strike className="text-red-200 opacity-80">
-                  {content.originalPrice}
-                </strike>
-              </span>
-            </span>
-            
-            {/* Shimmer Effect */}
-            <div 
-              className={`absolute inset-0 -top-2 -bottom-2 w-6 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -skew-x-12 ${
-                isHovered ? 'animate-shimmer' : ''
-              }`}
-              style={{
-                left: '-100%',
-                animation: isHovered ? 'shimmer 0.8s ease-out' : 'none'
-              }}
-            />
-            
-            {/* Continuous shimmer animation */}
-            <div 
-              className="absolute inset-0 -top-2 -bottom-2 w-6 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-continuous-shimmer"
-              style={{
-                animation: 'continuousShimmer 3s ease-in-out infinite'
-              }}
-            />
-            
-            {/* Button glow effect */}
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-sm" />
-          </a>
-        </b></b>
-      </div>
-
+   return (
+    <>
       <style jsx>{`
         @keyframes shimmer {
-          0% {
-            left: -100%;
-          }
-          100% {
-            left: 100%;
-          }
+          0% { transform: translateX(200%) skewX(-12deg); }
+          100% { transform: translateX(-100%) skewX(-12deg); }
         }
-        
-        @keyframes continuousShimmer {
-          0%, 100% {
-            left: -100%;
-            opacity: 0;
-          }
-          50% {
-            left: 100%;
-            opacity: 1;
-          }
-        }
-        
-        .animate-shimmer {
-          animation: shimmer 0.8s ease-out;
-        }
-        
-        .animate-continuous-shimmer {
-          animation: continuousShimmer 3s ease-in-out infinite;
+        .shimmer-effect {
+          animation: shimmer 2s infinite;
         }
       `}</style>
-    </div>
+      
+      <div className={`w-full flex justify-center ${className}`}>
+        <div className="elementor-button-wrapper relative">
+          {showSeatsChip && (
+            <div className="absolute -top-7  right-[5%] mt-2 min-w-[100px] sm:min-w-[118px] rounded-full bg-[#0B1A3A] px-2 sm:px-3.5 py-1 sm:py-1.5 text-center text-[14px] md:text-[14px]  font-medium text-white shadow z-10">
+              {seatsLeft} Seats Left
+            </div>
+          )}
+          
+          <b><b>
+            <a 
+              className="relative inline-block bg-[#E2181B] text-white font-bold py-4 px-20 md:py-4 md:px-12 rounded-[20px] text-sm md:text-base transition-all duration-300 overflow-hidden group"
+              href={content.enrollLink}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <span className="elementor-button-content-wrapper relative z-10">
+                <span className="elementor-button-text md:text-2xl text-lg items">
+                  ENROLL NOW @ {content.price}{' '}
+                  <strike className="text-red-200 opacity-80">
+                    {content.originalPrice}
+                  </strike>
+                </span>
+              </span>
+              
+              {/* Shimmer effect */}
+              <div 
+                className="shimmer-effect absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-40"
+                style={{ zIndex: 5 }}
+              />
+              
+              {/* Button glow effect */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-sm" />
+            </a>
+          </b></b>
+        </div>
+      </div>
+    </>
   )
 }

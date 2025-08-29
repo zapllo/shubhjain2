@@ -168,7 +168,7 @@ export default function ClientsSlider() {
             
             mobileIntervalRef.current = setInterval(() => {
                 setCurrentIndex(prev => (prev + 1) % clients.length)
-            }, 4000) // Change card every 4 seconds on mobile
+            }, 2000) // Change card every 1.5 seconds on mobile
 
             return () => {
                 if (mobileIntervalRef.current) {
@@ -325,9 +325,9 @@ const handleTouchEnd = () => {
     }
 
     return (
-        <section className="w-full mt-12 pt-12">
+        <section className="w-full mt-8 pt-8">
             <div className="mx-auto md:max-w-[1240px] px-4">
-                <h2 className="mb-4 text-center text-2xl md:text-4xl font-bold text-[#0F2C80]">
+                <h2 className="mb-4 text-center text-3xl md:text-4xl font-extrabold text-[#0F2C80]">
                     Some Of Our Clients...
                 </h2>
 
@@ -368,13 +368,13 @@ const handleTouchEnd = () => {
                                 onTouchEnd={handleTouchEnd}
                             >
                                 <div 
-                                    className="flex transition-transform duration-500 ease-in-out"
+                                    className="flex  transition-transform duration-500 ease-in-out"
                                     style={{
                                         transform: `translateX(-${currentIndex * 100}%)`
                                     }}
                                 >
                                     {clients.map((client, index) => (
-                                        <div key={client.name} className="w-full flex-shrink-0">
+                                        <div key={client.name} className="w-full  flex-shrink-0">
                                             <ClientCard client={client} isMobile={true} />
                                         </div>
                                     ))}

@@ -7,9 +7,17 @@
 
 /* Custom animation for blinking effect */
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
 }
+
 .animate-pulse {
   animation: pulse 1s infinite;
 }
@@ -87,8 +95,13 @@
 
 /* Base styles */
 @layer base {
-  * { @apply border-border outline-ring/50; }
-  body { @apply bg-background text-foreground; }
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 /* Keep Tailwind v4 tokens working while avoiding parser issues */
@@ -130,4 +143,15 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+
+@keyframes shimmer-right-to-left {
+  0% {
+    right: -100%;
+  }
+
+  100% {
+    right: 100%;
+  }
 }

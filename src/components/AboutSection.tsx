@@ -60,7 +60,7 @@ function DecorativeIcon() {
 
 const achievements = [
     {
-        text: "Sold Over<b> <u>62+ Crores</u></b> in Sales for clients."
+        text: "Sold Over<b> <u>130+ Crores</u></b> in Sales for clients."
     },
     {
         text: "TOP Players Trust Us With Their Marketing!"
@@ -141,7 +141,7 @@ export default function AboutSection() {
                                             <CheckmarkIcon />
                                         </div>
                                         <span
-                                            className="text-white/95 text-[15px] md:text-[17px] lg:text-[18px] leading-relaxed font-semibold"
+                                            className="text-white/95 text-[15px] md:text-[17px] lg:text-[18px] leading-relaxed font-bold"
                                             dangerouslySetInnerHTML={{ __html: achievement.text }}
                                         />
                                     </li>

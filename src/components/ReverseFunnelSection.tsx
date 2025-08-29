@@ -291,14 +291,14 @@ export default function ReverseFunnelSection() {
     }
     return (
         <>
-            <section className="w-full bg-[#F8FAFF] py-12 sm:py-16 lg:py-4">
+            <section className="w-full bg-[#F8FAFF] py-2">
                 <div className="mx-auto max-w-[1200px] px-4">
                     {/* Main Headline */}
                     <div className="text-center mb-8 sm:mb-12">
-                        <h2 className="text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] font-bold text-[#13316b] leading-[1.2] mb-6">
+                        <h2 className="text-[24px] sm:text-[28px] md:text-[32px] leading-[1.4] lg:text-[36px] font-bold text-[#13316b] leading-[1.2] mb-6">
                             After{' '}
                             <span className="inline-block bg-[#FFFECD] text-[#13316b] px-2 py-1 rounded">
-                                <span className="text- text-[#13316b]">65+ Crores In Sales</span>
+                                <span className="text- text-[#13316b]">130+ Crores In Sales</span>
                             </span>{' '}
                             The Only System{' '}
                             <span className="underline">You&apos;ll <br className='hidden md:block' />Ever Need</span>{' '}
@@ -319,13 +319,13 @@ export default function ReverseFunnelSection() {
 
                     {/* Reverse Funnel System Image */}
                     <div className="relative mb-8 sm:mb-12">
-                        <div className="relative transform scale-105 sm:scale-110">
+                        <div className="relative transform  flex justify-center  sm:scale-110">
                             <Image
                                 src="https://lp.launchatscale.com/wp-content/uploads/2025/02/Reverse-Funnel-System1-1-1024x584.webp"
                                 alt="Reverse Funnel System"
                                 width={1024}
                                 height={584}
-                                className="w-full h-auto rounded-xl shad"
+                                className="w-[900px] h-full rounded-xl shad"
                             />
                         </div>
 
@@ -358,11 +358,11 @@ export default function ReverseFunnelSection() {
                     {/* ... rest of the existing content remains the same ... */}
                 </div>
                 {/* CTA Section */}
-                <div className='w-full flex justify-center md:-m md:-mt-36 -'>
-                    <div className="text-center md:mt-32 md:mt-0 space-y-4">
+                <div className='w-full flex justify-center md:-m -'>
+                    <div className="text-center   space-y-4">
 
                         {/* CTA Section */}
-                        <div className="text-center mt-12">
+                        <div className="text-center mt-4">
                             <div className="relative inline-block">
                                 <EnrollButton
 
@@ -372,10 +372,7 @@ export default function ReverseFunnelSection() {
                                     className="inline-flex rounded-2xl -center justify-center "
                                 />
 
-                                {/* Seats chip */}
-                                <div className="absolute -top-4 sm:-top-6 right- right-[4%] mt-2 min-w-[100px] sm:min-w-[118px] rounded-full bg-[#0B1A3A] px-2 sm:px-3.5 py-1 sm:py-1.5 text-center text-[10px] sm:text-[11px] font-semibold text-white shadow">
-                                    10 Seats Left
-                                </div>
+                              
                             </div>
 
 
@@ -405,7 +402,7 @@ export default function ReverseFunnelSection() {
 
                             <div className="mt-3 flex items-center justify-center gap-2 text-[13px] font-bold text-[#454545]">
                                 <Calendar className="h-3 sm:h-4 w-3 sm:w-4" />
-                                <span>Hurry! 28 Seats Of This Event Left</span>
+                                 <span>Seats Of This Event As Of {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }).replace(/(\d+)/, '$1th')} Is Low</span>
                             </div>
                         </div>
                     </div>

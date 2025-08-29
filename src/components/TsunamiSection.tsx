@@ -52,9 +52,9 @@ function DecorativeIcon2() {
 
 export default function TsunamiSection() {
     return (
-        <section className="w-full bg-[#F9F9F9] py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+        <section className="w-full bg-[#F9F9F9] py-2  relative overflow-hidden">
             {/* Decorative Icons */}
-            <div className="absolute top-8 md:left-8  block">
+            <div className="absolute top-2 md:left-8  block">
                 <DecorativeIcon1 />
             </div>
             <div className="absolute top-16 right-0 md:right-8  block">
@@ -63,13 +63,13 @@ export default function TsunamiSection() {
 
             <div className="mx-auto max-w-[1200px] px-4">
                 {/* Main Headline */}
-                <div className="text-center mb-8 sm:mb-12">
-                    <h2 className="text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] font-bold text-[#13316b] leading-[1.2] mb-6">
-                        Get A Tsunami of{' '}
+                <div className="text-center mt-12 mb-8 sm:mb-12">
+                    <h2 className="text-[28px] md:text-[32px] lg:text-[36px] font-bold text-[#13316b] leading-[1.2] mb-6">
+                        Get A Tsunami of
                         <span className="md:inline-block  px-2 py-1 rounded">
-                            <span className="">Coaching Sales</span>
-                        </span>{' '}
-                        Than What You <br /> Could Possibly Handle!{' '}
+                            <span className="">Sales</span>
+                        </span>
+                        Than What You <br className='hidden md:block' /> Could <br className='md:hidden' /> Possibly Handle!{' '}
                         <span className="underline">(ON AUTOPILOT)</span>
                     </h2>
 
@@ -139,7 +139,7 @@ export default function TsunamiSection() {
                         </div>
 
                         {/* Before/After Comparison Image */}
-                        <div className="relative transform mt-20 scale-105 sm:scale-110">
+                        <div className="relative transform md:mt-20 mt-10 scale-105 sm:scale-110">
                             <Image
                                 src="https://lp.launchatscale.com/wp-content/uploads/2025/02/Before-and-after1-1.webp"
                                 alt="Before and after comparison"
@@ -152,10 +152,10 @@ export default function TsunamiSection() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="text-center mt-24 space-y-6">
+                <div className="text-center  space-y-6">
 
 
-                    <div className="text-center mt-12">
+                    <div className="text-center mt-4">
                         <div className="relative inline-block">
                             <EnrollButton
 
@@ -165,10 +165,7 @@ export default function TsunamiSection() {
                                 className="inline-flex rounded-2xl -center justify-center "
                             />
 
-                            {/* Seats chip */}
-                            <div className="absolute -top-4 sm:-top-6 right- right-[4%] min-w-[100px] sm:min-w-[118px] rounded-full bg-[#0B1A3A] px-2 sm:px-3.5 py-1 md:py-1.5 mt-2 text-center text-[10px] sm:text-[11px] font-semibold text-white shadow">
-                                10 Seats Left
-                            </div>
+                       
                         </div>
 
 
@@ -197,7 +194,7 @@ export default function TsunamiSection() {
 
                         <div className="mt-3 flex items-center justify-center gap-2 text-[13px] font-bold text-[#454545]">
                             <Calendar className="h-3 sm:h-4 w-3 sm:w-4" />
-                            <span>Hurry! 28 Seats Of This Event Left</span>
+                              <span>Seats Of This Event As Of {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }).replace(/(\d+)/, '$1th')} Is Low</span>
                         </div>
                     </div>
                 </div>

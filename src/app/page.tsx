@@ -12,8 +12,6 @@ import StickyBottomCTA from '@/components/StickyBottomCTA'
 import TsunamiSection from '@/components/TsunamiSection'
 import React from 'react'
 
-
-
 export default function Home({ }: Props) {
   return (
     <div className=''>

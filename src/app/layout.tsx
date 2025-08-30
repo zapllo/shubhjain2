@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
+import TrackingScripts from "@/components/TrackingScripts";
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
@@ -24,6 +25,7 @@ export default function RootLayout({
         className={`${instrumentSans.variable} antialiased`}
         style={{ fontFamily: 'var(--font-instrument-sans), sans-serif' }}
       >
+        <TrackingScripts />
         {children}
       </body>
     </html>

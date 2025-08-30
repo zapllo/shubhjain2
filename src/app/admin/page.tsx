@@ -1,14 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { IContent, ITestimonial } from '@/lib/models/Content'
-import { 
-  Save, 
-  LogOut, 
-  Loader2, 
-  Plus, 
-  Trash2, 
-  Eye, 
+import { IContent, ITestimonial, ITrackingScript } from '@/lib/models/Content'
+import {
+  Save,
+  LogOut,
+  Loader2,
+  Plus,
+  Trash2,
+  Eye,
   Calendar,
   Clock,
   MapPin,
@@ -18,7 +18,10 @@ import {
   Users,
   AlertCircle,
   CheckCircle,
-  IndianRupee
+  IndianRupee,
+  Code,
+  ToggleLeft,
+  Lightbulb
 } from 'lucide-react'
 
 interface LoginForm {
@@ -31,6 +34,56 @@ interface AdminUser {
   email: string
   name: string
 }
+
+
+// Update the Google Analytics script in defaultTrackingScripts
+const defaultTrackingScripts: ITrackingScript[] = [
+  {
+    id: '1',
+    name: 'Meta Pixel',
+    script: `<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1106571651572381');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1106571651572381&ev=PageView&noscript=1"
+/></noscript>`,
+    enabled: true
+  },
+  {
+    id: '2',
+    name: 'Google Analytics',
+    script: `<script async src="https://www.googletagmanager.com/gtag/js?id=AW-670210434"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-670210434');
+</script>`,
+    enabled: true
+  },
+  {
+    id: '3',
+    name: 'Microsoft Clarity',
+    script: `<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "t2vgh39uhi");
+</script>`,
+    enabled: true
+  }
+]
+
 
 export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
@@ -86,6 +139,31 @@ export default function AdminPage() {
       const response = await fetch('/api/content')
       if (response.ok) {
         const data: IContent = await response.json()
+
+        // Ensure trackingScripts exists, if not, add default scripts
+        if (!data.trackingScripts || data.trackingScripts.length === 0) {
+          console.log('🔧 No tracking scripts found, initializing with defaults...')
+          data.trackingScripts = defaultTrackingScripts
+
+          // Optionally save the defaults to the database immediately
+          const token = localStorage.getItem('adminToken')
+          if (token) {
+            try {
+              await fetch('/api/content', {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(data)
+              })
+              console.log('✅ Default tracking scripts saved to database')
+            } catch (saveError) {
+              console.warn('⚠️ Could not save default scripts to database:', saveError)
+            }
+          }
+        }
+
         setContent(data)
       }
     } catch (error) {
@@ -95,9 +173,34 @@ export default function AdminPage() {
     }
   }
 
+  const updateTrackingScript = <K extends keyof ITrackingScript>(index: number, field: K, value: ITrackingScript[K]) => {
+    if (!content || !content.trackingScripts) return
+    const newScripts = [...content.trackingScripts]
+    newScripts[index] = { ...newScripts[index], [field]: value }
+    setContent({ ...content, trackingScripts: newScripts })
+  }
+
+  const addTrackingScript = () => {
+    if (!content) return
+    const newScript: ITrackingScript = {
+      id: Date.now().toString(),
+      name: '',
+      script: '',
+      enabled: true
+    }
+    const currentScripts = content.trackingScripts || []
+    setContent({ ...content, trackingScripts: [...currentScripts, newScript] })
+  }
+
+  const removeTrackingScript = (index: number) => {
+    if (!content || !content.trackingScripts) return
+    const newScripts = content.trackingScripts.filter((_, i) => i !== index)
+    setContent({ ...content, trackingScripts: newScripts })
+  }
+
   const handleSave = async () => {
     if (!content) return
-    
+
     setSaving(true)
     try {
       const token = localStorage.getItem('adminToken')
@@ -177,7 +280,7 @@ export default function AdminPage() {
               <h1 className="text-2xl font-bold text-gray-900 mb-2">Launch at Scale</h1>
               <p className="text-gray-600">Admin Dashboard Login</p>
             </div>
-            
+
             <form onSubmit={handleLogin} className="space-y-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -233,18 +336,18 @@ export default function AdminPage() {
     { id: 'pricing', label: 'Pricing & Links', icon: IndianRupee },
     { id: 'event', label: 'Event Details', icon: Calendar },
     { id: 'videos', label: 'Hero Video', icon: Video },
-    { id: 'testimonials', label: 'Testimonials', icon: Users }
+    { id: 'testimonials', label: 'Testimonials', icon: Users },
+    { id: 'tracking', label: 'Tracking Scripts', icon: Code }
   ] as const
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Notification */}
       {notification && (
-        <div className={`fixed top-4 right-4 z-50 flex items-center space-x-2 px-4 py-3 rounded-lg shadow-lg transition-all duration-300 ${
-          notification.type === 'success' 
-            ? 'bg-green-500 text-white' 
-            : 'bg-red-500 text-white'
-        }`}>
+        <div className={`fixed top-4 right-4 z-50 flex items-center space-x-2 px-4 py-3 rounded-lg shadow-lg transition-all duration-300 ${notification.type === 'success'
+          ? 'bg-green-500 text-white'
+          : 'bg-red-500 text-white'
+          }`}>
           {notification.type === 'success' ? (
             <CheckCircle className="w-5 h-5" />
           ) : (
@@ -298,11 +401,10 @@ export default function AdminPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 flex items-center justify-center space-x-2 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
-                    activeTab === tab.id
-                      ? 'bg-white text-blue-600 shadow-md'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                  }`}
+                  className={`flex-1 flex items-center justify-center space-x-2 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === tab.id
+                    ? 'bg-white text-blue-600 shadow-md'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
                 >
                   <Icon className="w-5 h-5" />
                   <span className="hidden sm:inline">{tab.label}</span>
@@ -325,7 +427,7 @@ export default function AdminPage() {
                   <p className="text-gray-600">Manage pricing and enrollment settings</p>
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div>
@@ -353,7 +455,7 @@ export default function AdminPage() {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-3">
@@ -394,7 +496,7 @@ export default function AdminPage() {
                   <p className="text-gray-600">Configure event information</p>
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div>
@@ -424,7 +526,7 @@ export default function AdminPage() {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-6">
                   <div>
                     <label className="flex items-center space-x-2 text-sm font-semibold text-gray-700 mb-3">
@@ -468,7 +570,7 @@ export default function AdminPage() {
                   <p className="text-gray-600">Manage main promotional video</p>
                 </div>
               </div>
-              
+
               <div className="space-y-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <div>
@@ -496,7 +598,7 @@ export default function AdminPage() {
                     />
                   </div>
                 </div>
-                
+
                 {/* Video Preview */}
                 {content.heroVideoUrl && (
                   <div className="bg-gray-50 rounded-xl p-6">
@@ -537,7 +639,7 @@ export default function AdminPage() {
                   <span>Add Testimonial</span>
                 </button>
               </div>
-              
+
               <div className="space-y-6">
                 {content.testimonials.map((testimonial, index) => (
                   <div key={testimonial.id} className="bg-gray-50 rounded-xl p-6 border border-gray-200">
@@ -566,7 +668,7 @@ export default function AdminPage() {
                         )}
                       </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -617,7 +719,7 @@ export default function AdminPage() {
                         />
                       </div>
                     </div>
-                    
+
                     {/* Thumbnail Preview */}
                     {testimonial.thumbnail && (
                       <div className="mt-4">
@@ -634,6 +736,116 @@ export default function AdminPage() {
                     )}
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+          {activeTab === 'tracking' && (
+            <div className="p-8">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-green-100 rounded-lg">
+                    <Code className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900">Tracking Scripts</h2>
+                    <p className="text-gray-600">Manage analytics and tracking codes</p>
+                  </div>
+                </div>
+                <button
+                  onClick={addTrackingScript}
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-4 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Add Script</span>
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                {/* Add safety check for trackingScripts */}
+                {(content?.trackingScripts || []).map((script, index) => (
+                  <div key={script.id} className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center space-x-3">
+                        <h3 className="text-lg font-semibold text-gray-900">
+                          {script.name || `Script ${index + 1}`}
+                        </h3>
+                        <button
+                          onClick={() => updateTrackingScript(index, 'enabled', !script.enabled)}
+                          className={`inline-flex items-center space-x-1 px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${script.enabled
+                            ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                            }`}
+                        >
+                          <Lightbulb className="w-4 h-4" />
+                          <span>{script.enabled ? 'Enabled' : 'Disabled'}</span>
+                        </button>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        {(content?.trackingScripts || []).length > 1 && (
+                          <button
+                            onClick={() => removeTrackingScript(index)}
+                            className="inline-flex items-center space-x-1 text-sm text-red-600 hover:text-red-700"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                            <span>Remove</span>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Script Name
+                        </label>
+                        <input
+                          type="text"
+                          value={script.name}
+                          onChange={(e) => updateTrackingScript(index, 'name', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                          placeholder="e.g., Google Analytics, Meta Pixel, etc."
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                          Script Code
+                        </label>
+                        <textarea
+                          value={script.script}
+                          onChange={(e) => updateTrackingScript(index, 'script', e.target.value)}
+                          rows={10}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 font-mono text-sm"
+                          placeholder="Paste your tracking script here..."
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Show empty state only if no scripts exist */}
+                {(!content?.trackingScripts || content.trackingScripts.length === 0) && (
+                  <div className="text-center py-12">
+                    <Code className="mx-auto h-12 w-12 text-gray-400" />
+                    <h3 className="mt-2 text-sm font-medium text-gray-900">No tracking scripts</h3>
+                    <p className="mt-1 text-sm text-gray-500">
+                      Get started by adding your first tracking script.
+                    </p>
+                    <div className="mt-4">
+                      <button
+                        onClick={() => {
+                          // Initialize with default scripts
+                          if (content) {
+                            setContent({ ...content, trackingScripts: defaultTrackingScripts })
+                          }
+                        }}
+                        className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium px-4 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
+                      >
+                        <Plus className="w-4 h-4" />
+                        <span>Add Default Scripts</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}

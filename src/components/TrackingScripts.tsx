@@ -137,9 +137,7 @@ export default function TrackingScripts() {
         })
       })
       
-      // Check if gtag is now available
-      console.log('🔍 Final check - Google Analytics gtag:', !!window.gtag)
-      console.log('🔍 Final check - dataLayer:', !!(window as any).dataLayer)
+    
     }, 2000)
   }, [scripts])
 
